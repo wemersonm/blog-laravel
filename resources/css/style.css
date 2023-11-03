@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
+
+
+a.navbar-brand#logo{
+    font-size: 25px;
+   font-family: 'Dancing Script', cursive;
+}
+.container-posts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.card-post {
+    width: calc(33% - 10px);
+    
+}
+.card-post .card-title{
+    outline: 1px solid purple;
+    height: 100px;
+    word-wrap: break-word;
+}
+.card-post .card-text{
+    height: 100px;
+    border: 1px solid lime;
+}
+
+@media screen and (max-width: 992px) {
+    .card-post {
+        width: calc(50% - 10px);
+    }
+    .container-posts{
+        width: 100%;
+    }
+    
+
+    @media screen and (max-width:768px) {
+        .card-post {
+            width: calc(100% - 10px);
+        }
+    }
+}
+body{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+main{
+flex: 1;
+}
+footer{
+   width: 100%;
+  
+}
