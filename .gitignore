@@ -17,3 +17,7 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+
+/public/images/users
+/public/images/posts
+queryBuilder.php

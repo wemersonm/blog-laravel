@@ -1,0 +1,34 @@
+@extends('master')
+@section('jumbotrom')
+    <div class="text-center">
+        <h2>{{ $posts->category->NameCategory }}</h2>
+        <p class="fw-light lead"> ({{ $posts->total() }}) Posts</p>
+    </div>
+@endsection
+@section('content')
+    <div class="container mt-5">
+        <h6>Ultimos posts</h6>
+
+        <ul class="list-group">
+            @forelse ($posts as $post)
+                <li class="list-group-item mb-3 border">
+                    <a href="{{route('post.show',$post->SlugPost)}}" style="text-decoration: 0; color:inherit;">
+                        <div class="row">
+                            <div class="col-md-2 d-flex align-items-center">
+                                <img class="rounded-circle img-fluid" src="{{ $post->user->UserImage }}" alt="Imagem do Autor"
+                                    width="120px">
+                            </div>
+                            <div class="col-md-10">
+                                <h5 class="text-primary">{{ $post->user->UserFullname }}</h5>
+                                <h4>{{ $post->Title }}</h4>
+                                <p class="fw-light">{{ $post->dateFormat() }}</p>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            @empty
+                <h3>Nenhum post </h3>
+            @endforelse
+        </ul>
+    </div>
+@endsection

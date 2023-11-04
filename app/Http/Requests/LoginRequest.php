@@ -22,7 +22,7 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'Username' => 'required|regex:/^[a-zA-z\_]+$/',
+            'Username' => 'required|regex:/^[a-zA-z\.\_]+$/',
             'Password' => 'required'
         ];
     }

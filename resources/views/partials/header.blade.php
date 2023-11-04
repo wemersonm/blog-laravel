@@ -10,10 +10,8 @@
     }
 </style>
 
-<!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
     <div class="container-fluid">
-        <!-- Navbar brand -->
         <a class="navbar-brand" id="logo" href="{{ route('home.index') }}">
             mYbLOG
         </a>
@@ -24,50 +22,26 @@
         <div class="" id="navbarExample01">
 
             <ul class=" collapse navbar-collapse navbar-nav justify-content-end">
-                <li class="nav-item active">
-                    <a class="nav-link" aria-current="page" href="{{ route('home.index') }}">Home</a>
-                </li>
+                Bem Vindo(a), 
                 @guest
+                    Visitante
                     <li class="nav-item rounded-start bg-dark">
-                        <a class="nav-link text-light" href="">Sign In</a>
+                        <a class="nav-link text-light" href="{{ route('auth.index') }}">Sign In</a>
                     </li>
                     <li class="nav-item rounded-end bg-secondary">
-                        <a class="nav-link text-light" href="h">Sign Up</a>
+                        <a class="nav-link text-light" href="{{ route('user.create') }}">Sign Up</a>
                     </li>
                 @endguest
+
                 @auth
-                    <li class="nav-item ">
-                        <a class="nav-link " href="h">Logout</a>
+                    <span class="fw-bold p-1">{{ auth()->user()->UserFullname }}</span>
+                    <li class="nav-item bg-dark rounded">
+                        <a class="nav-link text-light" href="{{ route('auth.logout') }}">Logout</a>
                     </li>
                 @endauth
 
             </ul>
 
-            {{-- <ul class="navbar-nav d-flex flex-row">
-                <!-- Icons -->
-                <li class="nav-item me-3 me-lg-0">
-                    <a class="nav-link" href="" 
-                        target="_blank">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                </li>
-                <li class="nav-item me-3 me-lg-0">
-                    <a class="nav-link" href=""  target="_blank">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                </li>
-                <li class="nav-item me-3 me-lg-0">
-                    <a class="nav-link" href=""  target="_blank">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                </li>
-                <li class="nav-item me-3 me-lg-0">
-                    <a class="nav-link" href=""  target="_blank">
-                        <i class="fab fa-github"></i>
-                    </a>
-                </li>
-            </ul> --}}
         </div>
     </div>
 </nav>
-<!-- Navbar -->

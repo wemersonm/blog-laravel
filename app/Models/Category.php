@@ -12,4 +12,9 @@ class Category extends Model
     public $timestamps = false;
     protected $table = "Category";
     protected $primaryKey = "IdCategory";
+
+     protected $fillable = [
+        'NameCategory',
+        'SlugCategory',
+    ];
 }

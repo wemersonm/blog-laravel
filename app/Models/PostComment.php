@@ -23,4 +23,9 @@ class PostComment extends Model
         return $this->belongsTo(Post::class,"IdPost");
     }
 
+    public function dateFomart()
+    {
+        return $this->CreatedAt = date('d/m/y \á\s H:i',strtotime( $this->CreatedAt));
+    }
+
 }

@@ -2,32 +2,40 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\LoginRequest;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class AuthController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('guest2')->except('logout');
-        $this->middleware('auth')->only('logout');
+        $this->middleware('guest')->only(['create', 'store']);
+        $this->middleware('auth')->only(['logout']);
     }
 
-    public function create()
+    public function index()
     {
         return view('auth.create');
     }
-    public function store(LoginRequest $loginRequest)
+    public function store(Request $r)
     {
-    
-      $validations = $loginRequest->validated();
-    
-       session()->put('user', ["username" => $validations["Username"], "password" => $validations["Password"]]);
-        return redirect()->route('home.index');
+        $validations = $r->validate([
+            'Username' => 'required|regex:/^[a-zA-z\.\_]+$/',
+            'password' => 'required'
+        ]);
+        if (Auth::attempt($validations)) {
+            return Redirect::route('home.index');
+        }
+        return Redirect::back()->with([
+            'credentialsFail' => "Username ou senha incorretos",
+
+        ])->withInput();
     }
-    public function logout()
+    public function destroy()
     {
-        session()->pull('user');
+        Auth::logout();
         return redirect()->route("home.index");
     }
 }

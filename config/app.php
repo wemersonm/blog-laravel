@@ -159,7 +159,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        Laravel\Ui\UiServiceProvider::class,
         /*
          * Application Service Providers...
          */

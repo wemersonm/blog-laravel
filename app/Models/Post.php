@@ -21,7 +21,15 @@ class Post extends Model
 
     public function comments()
     {
-        return $this->hasMany(PostComment::class,"IdPost");
+        return $this->hasMany(PostComment::class, "IdPost");
+    }
+    public function category()
+    {
+        return $this->belongsTo(Category::class,"IdCategory");
     }
 
+    public function dateFormat()
+    {
+        return $this->CreatedAt = date('d\ M \d\e y',strtotime($this->CreatedAt));        
+    }
 }

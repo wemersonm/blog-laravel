@@ -44,7 +44,7 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
-        'myApp' => [
+        'MyGroupMidd' => [
             'auth' => \App\Http\Middleware\Authenticate::class,
         ]
     ];
@@ -57,7 +57,7 @@ class Kernel extends HttpKernel
      * @var array<string, class-string|string>
      */
     protected $middlewareAliases = [
-        'guest2' => \App\Http\Middleware\Guest::class,
+        'guest22' => \App\Http\Middleware\Guest::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,

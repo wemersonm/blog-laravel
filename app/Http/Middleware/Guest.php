@@ -15,9 +15,8 @@ class Guest
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(session()->has("user")){
-            DD("Não e convidado");
-            return redirect("/");
+        if (session()->has("userLogged")) {
+            return redirect(route('home.index'));
         }
         return $next($request);
     }

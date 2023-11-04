@@ -10,21 +10,23 @@
             <form action="{{ route('auth.store') }}" method="POST">
                 @csrf
                 <div class="mb-3">
-                    <label class="form-label" for="username">Nome de Usuário:</label>
-                    <input class="form-control @error('Username')
-                        {{ "is-invalid" }}
-                    @enderror" 
-                    type="text" id="username" name="Username" value={{old("Username")}}>
+                    <label class="form-label" for="username">Username</label>
+                    <input
+                        class="form-control @error('Username')
+                        {{ 'is-invalid' }}
+                    @enderror"
+                        type="text" id="username" name="Username" value={{ old('Username') }}>
                     @error('Username')
                         <div class="form-text text-danger"> {{ $message }}</div>
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="password">Senha:</label>
-                    <input class="form-control @error("Password")
-                        {{ "is-invalid" }}
-                    @enderror" 
-                    type="password" id="password" name="Password">
+                    <label class="form-label" for="password">Senha</label>
+                    <input
+                        class="form-control @error('password')
+                        {{ 'is-invalid' }}
+                    @enderror"
+                        type="password" id="password" name="password">
                     @error('Password')
                         <div class="form-text text-danger"> {{ $message }}</div>
                     @enderror
@@ -32,6 +34,11 @@
                 <div class="mb-3">
                     <input type="submit" value="Entrar" class="btn btn-primary">
                 </div>
+                @if (session()->has('credentialsFail'))
+                    <div class="alert alert-danger">
+                        {{ session('credentialsFail') }}
+                    </div>
+                @endif
             </form>
         </div>
     </div>
