@@ -30,6 +30,6 @@ class Post extends Model
 
     public function dateFormat()
     {
-        return $this->CreatedAt = date('d\ M \d\e y',strtotime($this->CreatedAt));        
+        return $this->CreatedAt = date('d M \d\e y',strtotime($this->CreatedAt));        
     }
 }

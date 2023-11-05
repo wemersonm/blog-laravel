@@ -13,6 +13,12 @@ class PostComment extends Model
     protected $table = "PostComment";
     protected $primaryKey = "IdPostComment";
 
+
+    public $fillable = [
+        'IdPost',
+        'IdUser',
+        'Content'
+    ];
     public function user()
     {
         return $this->belongsTo(User::class, 'IdUser');
