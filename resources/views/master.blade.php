@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Material Design for Bootstrap</title>
+    <title>{{$title ?? env('APP_NAME')}}</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
     <!-- Google Fonts Roboto -->
@@ -27,7 +27,7 @@
         </div>
     </header>
     <!--Main layout-->
-    <main class="my-1" style=" margin-top: 58px;">
+    <main class="my-3" style=" margin-top: 58px;">
         @yield('content')
     </main>
     <!--Main layout-->

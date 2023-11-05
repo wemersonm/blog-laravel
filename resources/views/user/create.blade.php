@@ -20,7 +20,6 @@
                         @error('Username')
                             <div id="Username" class="form-text text-danger">{{ $message }}</div>
                         @enderror
-
                     </div>
 
                     <div class="mb-3">
@@ -34,34 +33,56 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="UserBio" class="form-label">Bio</label>
+                        <label for="UserBio" class="form-label @error('UserBio'){{ 'is-invalid' }} @enderror">Bio</label>
                         <textarea name="UserBio" class="form-control" id="UserBio" aria-describedby="UserBio" rows="3"> {{ old('UserBio') }} </textarea>
-                        {{-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> --}}
+                        @error('UserBio')
+                            <div id="UserBio" class="form-text text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
                         <label for="Email" class="form-label">Email</label>
-                        <input type="email" name="Email" class="form-control" id="Email" aria-describedby="Email"
-                            value="{{ old('UserBio') }}">
-                        {{-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> --}}
+                        <input type="email" name="Email"
+                            class="form-control @error('Email'){{ 'is-invalid' }} @enderror" id="Email"
+                            aria-describedby="Email" value="{{ old('Email') }}">
+                        @error('Email')
+                            <div id="Email" class="form-text text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
-                        <label for="Password" class="form-label">Senha</label>
-                        <input type="password" name="Password" class="form-control" id="Password"
-                            aria-describedby="Password">
-                        {{-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> --}}
+                        <label for="password" class="form-label">Senha</label>
+                        <input type="password" name="password"
+                            class="form-control @error('password'){{ 'is-invalid' }} @enderror" id="password"
+                            aria-describedby="password">
+                        @error('password')
+                            <div id="password" class="form-text text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
-
+                    <div class="mb-3">
+                        <label for="Occupation" class="form-label">Ocupação</label>
+                        <input type="text" name="Occupation"
+                            class="form-control @error('Occupation'){{ 'is-invalid' }} @enderror" id="Occupation"
+                            aria-describedby="Occupation">
+                        @error('Occupation')
+                            <div id="Occupation" class="form-text text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
                     <div class="mb-3">
                         <label for="UserImage" class="form-label">Insira uma imagem de perfil</label>
-                        <input class="form-control" type="file" id="UserImage" name="UserImage">
+                        <input class="form-control @error('UserImage'){{ 'is-invalid' }} @enderror" type="file"
+                            id="UserImage" name="UserImage">
+                        @error('UserImage')
+                            <div id="UserImage" class="form-text text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="d-flex justify-content-center mt-1">
-                        <button class="btn btn-success w-50">Criar</button>
-                    </div>
-
+                        <button class="btn btn-success flex-grow-1">Criar</button>
+                    </div>  
+                    @if (session()->has('errorCreateUser'))
+                        <p class="alert alert-danger">{{ session()->get('errorCreateUser') }}</p>
+                    @endif
                 </form>
             </div>
         </div>

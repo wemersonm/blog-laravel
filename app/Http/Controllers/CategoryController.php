@@ -4,18 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
+use stdClass;
 
 class CategoryController extends Controller
 {
-    public function showPosts( $slugCategory)
+    public function showPosts(Category $category)
     {
-        
-        $posts = Post::where('IdCategory', function ($query) use ($slugCategory) {
-            $query->select('IdCategory')->from('Category')->where('SlugCategory', $slugCategory)->first();
-        })->with(['user'])->latest('CreatedAt')->paginate(4);
-        $posts->category = Category::where('SlugCategory',$slugCategory)->first();
-            // return $posts;
-        return  view('post.categoryPosts', compact('posts'));
+        $posts = Post::where('IdCategory',$category->IdCategory)->with(['user'])->latest('CreatedAt')->paginate(4);
+        $posts->category = $category;
+
+         $result = [
+            'posts' => $posts,
+            'category' => $category
+        ];
+        return  view('post.categoryPosts', $result);
     }
 }

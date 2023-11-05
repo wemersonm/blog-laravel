@@ -19,4 +19,9 @@ class User extends Authenticatable
     //     'name',
     //     'password',
     // ];
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class,"IdUser");
+    }
 }

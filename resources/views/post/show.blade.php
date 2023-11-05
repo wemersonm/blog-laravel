@@ -1,21 +1,23 @@
 @extends('master')
 @section('jumbotrom')
-    <div class="row ">
-        <h2>{{ $post->Title }}</h2>
-    </div>
-    <div class="row mt-5  d-flex justify-content-center">
-
-        <div class="">
-            <a href="{{route('user.show',$post->user->Username)}}" style=" color: inherit; text-decoration:0" class="d-flex position-relative text-start">
-                <img src="https://laravel.com/img/logomark.min.svg" class="flex-shrink-0 me-3" alt="..." height="100px"
-                    width="100px">
-                <div class="d-flex flex-column justify-content-center align-items-center">
-                    <h5 class="mt-0">Por <span class="text-primary">{{ $post->user->UserFullname }}</span></h5>
-                    <p class="fw-lighter">{{ 'Occupation' }}</p>
-                </div>
-            </a>
+    <div class="container">
+        <div class="row">
+            <h2>{{ $post->Title }}</h2>
         </div>
+        <div class="row mt-5  d-flex justify-content-center">
 
+            <div class="">
+                <a href="{{ route('user.show', $post->user->Username) }}" style=" color: inherit; text-decoration:0"
+                    class="d-flex position-relative text-start">
+                    <img src="https://laravel.com/img/logomark.min.svg" class="flex-shrink-0 me-3" alt="..."
+                        height="100px" width="100px">
+                    <div class="d-flex flex-column justify-content-center align-items-center">
+                        <h5 class="mt-0">Por <span class="text-primary">{{ $post->user->UserFullname }}</span></h5>
+                        <p class="fw-lighter">{{ 'Occupation' }}</p>
+                    </div>
+                </a>
+            </div>
+        </div>
     </div>
 @endsection
 @section('content')
@@ -23,7 +25,7 @@
         <div class="mb-5" style="text-align: justify;">
             {{ $post->Body }}
         </div>
-        <h2>Comentários <span class="fw-light lead">( {{$post->comments->count()}} )</span></h2>
+        <h2>Comentários <span class="fw-light lead">( {{ $post->comments->count() }} )</span></h2>
         <div class="comments">
             @forelse ($post->comments as $comment)
                 <div class="media border rounded-4 Regular shadow d-flex align-itens-center mb-2">
@@ -45,13 +47,28 @@
 
         <div class="mt-5">
             <h2>Adicionar Comentário</h2>
-            <form action="{{-- {{route('postComment.store')}} --}}" method="post">
+            @if (session()->has('errorNotLoggedForComment'))
+                <p class="alert alert-warning">Faça login para comentar !</p>
+            @endif
+            <form action="{{ route('comment.store') }}" method="post">
                 @csrf
                 <div class="form-group mb-2">
-                    <textarea class="form-control" id="comment" rows="4" placeholder="Digite seu comentário aqui"></textarea>
+                    <input type="hidden" name="IdPost" value="{{ $post->IdPost }}">
+                    <textarea class="form-control" name="Content" rows="4" placeholder="Digite seu comentário aqui"></textarea>
+                    @error('Content')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
                 <button type="submit" class="btn btn-primary">Enviar Comentário</button>
             </form>
+            @error('IdPost')
+                <p class="alert alert-warning">Erro ao fazer o comentário</p>
+            @enderror
+            @if (session()->has('errorInsertComment'))
+                <p class="alert alert-warning">{{ session()->get('errorInsertComment') }}</p>
+            @endif
+        
+
         </div>
     </div>
 @endsection

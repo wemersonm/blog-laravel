@@ -22,9 +22,9 @@
         <div class="" id="navbarExample01">
 
             <ul class=" collapse navbar-collapse navbar-nav justify-content-end">
-                Bem Vindo(a), 
+                Bem Vindo(a),
                 @guest
-                    Visitante
+                    <span class="p-1">Visitante</span>
                     <li class="nav-item rounded-start bg-dark">
                         <a class="nav-link text-light" href="{{ route('auth.index') }}">Sign In</a>
                     </li>
@@ -34,7 +34,12 @@
                 @endguest
 
                 @auth
-                    <span class="fw-bold p-1">{{ auth()->user()->UserFullname }}</span>
+                    <span class="fw-bold p-1"><a
+                            href="
+                        {{ route('user.show', auth()->user()->Username) }}"
+                            style="text-decoration: 0">
+                            {{ auth()->user()->UserFullname }}</a>
+                    </span>
                     <li class="nav-item bg-dark rounded">
                         <a class="nav-link text-light" href="{{ route('auth.logout') }}">Logout</a>
                     </li>
